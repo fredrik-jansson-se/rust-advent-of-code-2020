@@ -13,7 +13,7 @@ pub fn run() {
 }
 
 fn parse_input(i: &str) -> IResult<&str, Vec<usize>> {
-    separated_list1(newline, usize_val)(i)
+    separated_list1(newline, uval)(i)
 }
 
 fn solve(inputs: &HashSet<usize>, target: usize) -> Option<usize> {
