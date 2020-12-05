@@ -1,7 +1,6 @@
 use nom::{
     branch::alt,
     bytes::complete::{tag, take_till1},
-    character::complete::space1,
     character::complete::{char, newline},
     multi::separated_list1,
     sequence::separated_pair,
