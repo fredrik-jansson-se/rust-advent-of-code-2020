@@ -1,9 +1,8 @@
 use crate::helper;
 use nom::{
-    bytes::complete::{tag, take_while_m_n},
+    bytes::complete::tag,
     character::complete::{alpha1, anychar, newline, space1},
-    combinator::map_res,
-    multi::{many1, separated_list1},
+    multi::separated_list1,
     sequence::separated_pair,
     IResult,
 };
