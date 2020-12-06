@@ -109,7 +109,6 @@ fn run_2(input: &str) -> usize {
 mod tests {
     #[test]
     fn aoc5_run_1() {
-        use super::*;
         assert_eq!(super::run_1("FBFBBFFRLR"), 357);
         assert_eq!(super::run_1("BFFFBBFRRR"), 567);
         assert_eq!(super::run_1("FFFBBBFRRR"), 119);

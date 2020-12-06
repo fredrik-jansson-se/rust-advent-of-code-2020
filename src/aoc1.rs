@@ -55,7 +55,6 @@ mod tests {
 
     #[test]
     fn aoc1_run_2() {
-        use super::*;
         assert_eq!(super::run_2(INPUT), 241861950);
     }
 }
