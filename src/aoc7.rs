@@ -1,7 +1,8 @@
 use nom::{
     branch::alt,
     bytes::complete::tag,
-    character::complete::{alpha1, anychar, newline, space1},
+    character::complete::{alpha1, newline, space1},
+    combinator::recognize,
     multi::separated_list1,
     sequence::separated_pair,
     IResult,
@@ -17,7 +18,7 @@ pub fn run() {
 
 pub fn run_1(input: &str) -> usize {
     let (_, bags) = bags(input).unwrap();
-    let bags: HashMap<String, Vec<Content>> = bags.into_iter().collect();
+    let bags: HashMap<&str, Vec<Content>> = bags.into_iter().collect();
 
     let mut can_contain: HashSet<String> = HashSet::new();
     let mut searched: HashSet<String> = HashSet::new();
@@ -36,10 +37,10 @@ pub fn run_1(input: &str) -> usize {
                     .is_some()
             });
             bags.clone().for_each(|(name, _)| {
-                can_contain.insert(name.clone());
+                can_contain.insert(name.to_string());
             });
 
-            bags.filter(|(name, _)| !searched.contains(*name))
+            bags.filter(|(name, _)| !searched.contains(**name))
                 .for_each(|(name, _)| new_to_search_for.push(&name));
         }
 
@@ -51,7 +52,7 @@ pub fn run_1(input: &str) -> usize {
 
 fn count_bags(
     name: &str,
-    bags: &HashMap<String, Vec<Content>>,
+    bags: &HashMap<&str, Vec<Content>>,
     cache: &mut HashMap<String, usize>,
 ) -> usize {
     if let Some(v) = cache.get(name) {
@@ -70,7 +71,7 @@ fn count_bags(
 
 pub fn run_2(input: &str) -> usize {
     let (_, bags) = bags(input).unwrap();
-    let bags: HashMap<String, Vec<Content>> = bags.into_iter().collect();
+    let bags: HashMap<&str, Vec<Content>> = bags.into_iter().collect();
     let mut cache: HashMap<String, usize> = HashMap::new();
 
     let ans = count_bags("shiny gold", &bags, &mut cache);
@@ -84,13 +85,8 @@ struct Content {
     quantity: usize,
 }
 
-// type Contents = HashMap<String, Content>;
-
-fn bag(i: &str) -> IResult<&str, String> {
-    let (i, name1) = alpha1(i)?;
-    let (i, _) = space1(i)?;
-    let (i, name2) = alpha1(i)?;
-    Ok((i, format!("{} {}", name1, name2)))
+fn bag(i: &str) -> IResult<&str, &str> {
+    recognize(separated_pair(alpha1, space1, alpha1))(i)
 }
 
 fn no_content(i: &str) -> IResult<&str, Vec<Content>> {
@@ -104,10 +100,16 @@ fn bag_content(i: &str) -> IResult<&str, Content> {
     let (i, bag) = bag(i)?;
     let (i, _) = space1(i)?;
     let (i, _) = alt((tag("bags"), tag("bag")))(i)?;
-    Ok((i, Content { bag, quantity }))
+    Ok((
+        i,
+        Content {
+            bag: bag.to_string(),
+            quantity,
+        },
+    ))
 }
 
-fn bag_contents(i: &str) -> IResult<&str, (String, Vec<Content>)> {
+fn bag_contents(i: &str) -> IResult<&str, (&str, Vec<Content>)> {
     let (i, name) = bag(i)?;
     let (i, _) = space1(i)?;
     let (i, _) = tag("bags contain")(i)?;
@@ -117,7 +119,7 @@ fn bag_contents(i: &str) -> IResult<&str, (String, Vec<Content>)> {
     Ok((i, (name, content)))
 }
 
-fn bags(i: &str) -> IResult<&str, Vec<(String, Vec<Content>)>> {
+fn bags(i: &str) -> IResult<&str, Vec<(&str, Vec<Content>)>> {
     separated_list1(newline, bag_contents)(i)
 }
 

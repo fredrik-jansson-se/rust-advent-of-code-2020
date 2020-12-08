@@ -5,12 +5,11 @@ authors = ["Fredrik Jansson <frjansso@cisco.com>"]
 edition = "2018"
 
 [dependencies]
-itertools = "*"
-lazy_static = "*"
-# minifb = "*"
+# itertools = "*"
+# lazy_static = "*"
 nom = "6"
-num-rational = "0.3"
-pathfinding = "2"
-permutohedron = "0.2.4"
-rayon = "1"
+# num-rational = "0.3"
+# pathfinding = "2"
+# permutohedron = "0.2.4"
+# rayon = "1"
 regex = "*"
