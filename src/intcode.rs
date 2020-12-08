@@ -127,5 +127,6 @@ acc +6";
         }
         let (i, code) = super::parse_program(INPUT).unwrap();
         assert_eq!(i, "");
+        assert_eq!(code.len(), 9);
     }
 }
