@@ -95,8 +95,6 @@ impl State {
     }
 }
 
-// 312 too low
-
 fn run_1(input: &str) -> isize {
     let (_, cmds) = parse(input).unwrap();
     let mut state = State::new();
