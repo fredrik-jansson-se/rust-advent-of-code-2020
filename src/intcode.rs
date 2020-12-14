@@ -120,11 +120,6 @@ acc -99
 acc +1
 jmp -4
 acc +6";
-        // Assert we can parse line by line
-        for line in INPUT.lines() {
-            let (i, _) = super::operation(line).unwrap();
-            assert_eq!(i, "");
-        }
         let (i, code) = super::parse_program(INPUT).unwrap();
         assert_eq!(i, "");
         assert_eq!(code.len(), 9);

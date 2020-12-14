@@ -6,6 +6,7 @@ use nom::character::complete::{char, newline};
 use nom::combinator::map;
 use nom::multi::separated_list1;
 use nom::IResult;
+use std::collections::HashMap;
 
 pub fn run() {
     let input = fs::read_to_string("day13.txt").unwrap();
@@ -41,7 +42,6 @@ fn run_2(input: &str) -> u128 {
         .collect::<Vec<_>>();
     buses.sort_by(|(b1, _), (b2, _)| b2.cmp(b1));
 
-    use std::collections::HashMap;
     let mods: HashMap<i128, i128> = buses
         .iter()
         .map(|(bus, idx)| (*bus, -idx % bus))
