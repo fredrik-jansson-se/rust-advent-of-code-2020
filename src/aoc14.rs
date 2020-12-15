@@ -58,6 +58,7 @@ fn run_2(input: &str) -> u64 {
                 if m.is_none() {
                     // Set bit to one
                     addresses.iter_mut().for_each(|addr| *addr |= 1 << bit);
+                    // Add addresses with bit set to zero
                     let new_addresses = addresses
                         .iter()
                         .map(|addr| addr & !(1 << bit))
