@@ -8,7 +8,7 @@ mod aoc13;
 mod aoc14;
 mod aoc15;
 mod aoc16;
-// mod aoc17;
+mod aoc17;
 // mod aoc18;
 // mod aoc19;
 mod aoc2;
@@ -54,7 +54,7 @@ fn main() {
         14 => aoc14::run(),
         15 => aoc15::run(),
         16 => aoc16::run(),
-        // 17 => aoc17::run(),
+        17 => aoc17::run(),
         // 18 => aoc18::run(),
         // 19 => aoc19::run(),
         // 20 => aoc20::run(),
