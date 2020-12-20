@@ -139,8 +139,6 @@ fn run_2(input: &str) -> usize {
         }
 
         std::mem::swap(&mut state, &mut new_state);
-        // dbg! {&state};
-        // panic!();
     }
 
     state.len()
