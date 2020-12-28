@@ -12,12 +12,12 @@ mod aoc17;
 mod aoc18;
 mod aoc19;
 mod aoc2;
-// mod aoc20;
-// mod aoc21;
-// mod aoc22;
-// mod aoc23;
-// mod aoc24;
-// mod aoc25;
+mod aoc20;
+mod aoc21;
+mod aoc22;
+mod aoc23;
+mod aoc24;
+mod aoc25;
 mod aoc3;
 mod aoc4;
 mod aoc5;
@@ -57,12 +57,12 @@ fn main() {
         17 => aoc17::run(),
         18 => aoc18::run(),
         19 => aoc19::run(),
-        // 20 => aoc20::run(),
-        // 21 => aoc21::run(),
-        // 22 => aoc22::run(),
-        // 23 => aoc23::run(),
-        // 24 => aoc24::run(),
-        // 25 => aoc25::run(),
+        20 => aoc20::run(),
+        21 => aoc21::run(),
+        22 => aoc22::run(),
+        23 => aoc23::run(),
+        24 => aoc24::run(),
+        25 => aoc25::run(),
         _ => (),
     }
 }

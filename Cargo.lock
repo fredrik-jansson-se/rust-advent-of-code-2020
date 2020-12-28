@@ -87,6 +87,7 @@ dependencies = [
  "bitvec",
  "lexical-core",
  "memchr",
+ "regex",
  "version_check",
 ]
 

@@ -7,7 +7,7 @@ edition = "2018"
 [dependencies]
 # itertools = "*"
 # lazy_static = "*"
-nom = "6"
+nom = {version = "6", features = ["regexp"]}
 # num-rational = "0.3"
 # pathfinding = "2"
 # permutohedron = "0.2.4"
