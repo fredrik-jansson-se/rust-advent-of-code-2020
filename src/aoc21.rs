@@ -1,9 +1,7 @@
 use nom::{
-    branch::alt,
     bytes::complete::tag,
     character::complete::{alpha1, newline, space1},
-    combinator::map,
-    multi::{many1, separated_list1},
+    multi::separated_list1,
     IResult,
 };
 use std::collections::{HashMap, HashSet};
@@ -41,7 +39,7 @@ fn run_1(input: &str) -> usize {
     // Filter out all ingredients that has know alergens
     all_ingredients_count
         .iter()
-        .filter(|(ing, cnt)| {
+        .filter(|(ing, _cnt)| {
             !alergens_to_ingredients
                 .iter()
                 .any(|(_algergen, ingredients)| ingredients.contains(*ing))
